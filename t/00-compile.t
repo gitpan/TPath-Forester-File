@@ -1,45 +1,54 @@
 use strict;
 use warnings;
 
-# This test was generated via Dist::Zilla::Plugin::Test::Compile 2.010
+# this test was generated with Dist::Zilla::Plugin::Test::Compile 2.021
 
 use Test::More 0.88;
 
 
 
-use Capture::Tiny qw{ capture };
-
-my @module_files = qw(
-lib/TPath/Forester/File.pm
-lib/TPath/Forester/File/Attributes.pm
-lib/TPath/Forester/File/Index.pm
-lib/TPath/Forester/File/Node.pm
+my @module_files = (
+    'TPath/Forester/File.pm',
+    'TPath/Forester/File/Attributes.pm',
+    'TPath/Forester/File/Index.pm',
+    'TPath/Forester/File/Node.pm'
 );
 
-my @scripts = qw(
-bin/tfind
+my @scripts = (
+    'bin/tfind'
 );
 
 # no fake home requested
 
+use IPC::Open3;
+use IO::Handle;
+use File::Spec;
+
 my @warnings;
 for my $lib (@module_files)
 {
-    my ($stdout, $stderr, $exit) = capture {
-        system($^X, '-Mblib', '-e', qq{require qq[$lib]});
-    };
-    is($?, 0, "$lib loaded ok");
-    warn $stderr if $stderr;
-    push @warnings, $stderr if $stderr;
-}
+    open my $stdout, '>', File::Spec->devnull or die $!;
+    open my $stdin, '<', File::Spec->devnull or die $!;
+    my $stderr = IO::Handle->new;
 
-is(scalar(@warnings), 0, 'no warnings found') if $ENV{AUTHOR_TESTING};
+    my $pid = open3($stdin, $stdout, $stderr, qq{$^X -Mblib -e"require q[$lib]"});
+    waitpid($pid, 0);
+    is($? >> 8, 0, "$lib loaded ok");
+
+    if (my @_warnings = <$stderr>)
+    {
+        warn @_warnings;
+        push @warnings, @_warnings;
+    }
+}
 
 use Test::Script 1.05;
 foreach my $file ( @scripts ) {
     script_compiles( $file, "$file compiles" );
 }
 
+
+is(scalar(@warnings), 0, 'no warnings found') if $ENV{AUTHOR_TESTING};
 
 
 

@@ -1,13 +1,13 @@
 package TPath::Forester::File;
 {
-  $TPath::Forester::File::VERSION = '0.001';
+  $TPath::Forester::File::VERSION = '0.002';
 }
 
 # ABSTRACT: L<TPath::Forester> that understands file systems
 
 $TPath::Forester::File::VERSION ||= .001; # Dist::Zilla will automatically update this
                                                                                 
-use v5.10;
+use v5.12;
 use Moose;
 use Moose::Exporter;
 use namespace::autoclean;
@@ -136,7 +136,7 @@ TPath::Forester::File - L<TPath::Forester> that understands file systems
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 ATTRIBUTES
 

@@ -1,6 +1,6 @@
 package TPath::Forester::File::Index;
 {
-  $TPath::Forester::File::Index::VERSION = '0.001';
+  $TPath::Forester::File::Index::VERSION = '0.002';
 }
 
 # ABSTRACT: index used by L<TPath::Forester::File>
@@ -32,7 +32,7 @@ TPath::Forester::File::Index - index used by L<TPath::Forester::File>
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 DESCRIPTION
 

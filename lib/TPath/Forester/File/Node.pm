@@ -1,6 +1,6 @@
 package TPath::Forester::File::Node;
 {
-  $TPath::Forester::File::Node::VERSION = '0.001';
+  $TPath::Forester::File::Node::VERSION = '0.002';
 }
 
 # ABSTRACT: represents file and its metadata
@@ -401,7 +401,7 @@ TPath::Forester::File::Node - represents file and its metadata
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 

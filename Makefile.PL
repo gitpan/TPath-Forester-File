@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use 5.010000;
+use 5.012000;
 
 use ExtUtils::MakeMaker 6.30;
 
@@ -28,7 +28,7 @@ my %WriteMakefileArgs = (
     "Encode::Detect::Detector" => 0,
     "Fcntl" => 0,
     "File::Spec" => 0,
-    "File::stat" => 0,
+    "File::stat" => "1.02",
     "Getopt::Long::Descriptive" => 0,
     "Module::Load::Conditional" => 0,
     "Moose" => 0,
@@ -36,7 +36,7 @@ my %WriteMakefileArgs = (
     "Moose::Role" => 0,
     "MooseX::MethodAttributes::Role" => 0,
     "Pod::Usage" => 0,
-    "TPath" => "0.016",
+    "TPath" => "1.000",
     "TPath::Forester" => 0,
     "TPath::Index" => 0,
     "filetest" => 0,
@@ -46,18 +46,20 @@ my %WriteMakefileArgs = (
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
-    "Capture::Tiny" => 0,
     "Exporter" => 0,
     "File::Path" => 0,
+    "File::Spec" => 0,
     "File::Temp" => 0,
     "FindBin" => 0,
+    "IO::Handle" => 0,
+    "IPC::Open3" => 0,
     "Test::More" => "0.88",
     "Test::Script" => "1.05",
     "autodie" => 0,
     "base" => 0,
     "lib" => 0
   },
-  "VERSION" => "0.001",
+  "VERSION" => "0.002",
   "test" => {
     "TESTS" => "t/*.t"
   }
