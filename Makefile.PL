@@ -16,10 +16,7 @@ my %WriteMakefileArgs = (
     "ExtUtils::MakeMaker" => "6.30"
   },
   "DISTNAME" => "TPath-Forester-File",
-  "EXE_FILES" => [
-    "bin/tfind",
-    "bin/tfind"
-  ],
+  "EXE_FILES" => [],
   "LICENSE" => "perl",
   "NAME" => "TPath::Forester::File",
   "PREREQ_PM" => {
@@ -29,21 +26,17 @@ my %WriteMakefileArgs = (
     "Fcntl" => 0,
     "File::Spec" => 0,
     "File::stat" => "1.02",
-    "Getopt::Long::Descriptive" => 0,
     "Module::Load::Conditional" => 0,
     "Moose" => 0,
     "Moose::Exporter" => 0,
     "Moose::Role" => 0,
     "MooseX::MethodAttributes::Role" => 0,
-    "Pod::Usage" => 0,
     "TPath" => "1.000",
     "TPath::Forester" => 0,
     "TPath::Index" => 0,
     "filetest" => 0,
     "namespace::autoclean" => 0,
-    "overload" => 0,
-    "strict" => 0,
-    "warnings" => 0
+    "overload" => 0
   },
   "TEST_REQUIRES" => {
     "Exporter" => 0,
@@ -54,12 +47,13 @@ my %WriteMakefileArgs = (
     "IO::Handle" => 0,
     "IPC::Open3" => 0,
     "Test::More" => "0.88",
-    "Test::Script" => "1.05",
     "autodie" => 0,
     "base" => 0,
-    "lib" => 0
+    "lib" => 0,
+    "strict" => 0,
+    "warnings" => 0
   },
-  "VERSION" => "0.002",
+  "VERSION" => "0.003",
   "test" => {
     "TESTS" => "t/*.t"
   }

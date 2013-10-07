@@ -1,6 +1,6 @@
 package TPath::Forester::File::Node;
 {
-  $TPath::Forester::File::Node::VERSION = '0.002';
+  $TPath::Forester::File::Node::VERSION = '0.003';
 }
 
 # ABSTRACT: represents file and its metadata
@@ -15,7 +15,7 @@ require Cwd;
 require Encode;
 
 use overload '""' => sub { shift->stringification };
-use overload '==' => sub { goto &equals };
+use overload '<=>' => \&compare, 'cmp' => \&compare;
 
 
 has real => ( is => 'ro', isa => 'Bool', required => 1, writer => '_real' );
@@ -379,10 +379,11 @@ sub _find_child {
 }
 
 
-sub equals {
-    my ( $self, $other ) = @_;
-    return unless blessed $other && $other->isa('TPath::Forester::File::Node');
-    return $self eq $other;
+sub compare {
+    my ( $self, $other, $swapped ) = @_;
+    return ( $swapped ? 1 : -1 )
+      unless blessed $other && $other->isa('TPath::Forester::File::Node');
+    return "$self" cmp "$other";
 }
 
 no Moose;
@@ -401,7 +402,7 @@ TPath::Forester::File::Node - represents file and its metadata
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 
@@ -476,11 +477,11 @@ with an appropriate error message.
 
 Returns the files text, if it is a text file, as a list of lines minus endline characters.
 
-=head2 equals($other)
+=head2 compare($other, [$swapped])
 
-Object equality method. This method requires that the other be an object of type
-L<TPath::Forester::File::Node> and that it stringify the same. It is used by the
-overloaded C<==> operator as well.
+Object comparison method. This method requires that the other be an object of type
+L<TPath::Forester::File::Node>, sorting such objects before all else. Otherwise it
+uses <cmp> on the stringification of the two objects.
 
 =head1 AUTHOR
 

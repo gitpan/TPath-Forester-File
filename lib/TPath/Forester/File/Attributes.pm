@@ -1,6 +1,6 @@
 package TPath::Forester::File::Attributes;
 {
-  $TPath::Forester::File::Attributes::VERSION = '0.002';
+  $TPath::Forester::File::Attributes::VERSION = '0.003';
 }
 
 # ABSTRACT: the basic attributes of L<TPath::Forester::File::Node> objects
@@ -197,7 +197,7 @@ TPath::Forester::File::Attributes - the basic attributes of L<TPath::Forester::F
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 DESCRIPTION
 

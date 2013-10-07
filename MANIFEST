@@ -6,7 +6,6 @@ Makefile.PL
 README
 README.md
 TODO
-bin/tfind
 dist.ini
 lib/TPath/Forester/File.pm
 lib/TPath/Forester/File/Attributes.pm

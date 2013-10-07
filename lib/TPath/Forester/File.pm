@@ -1,6 +1,6 @@
 package TPath::Forester::File;
 {
-  $TPath::Forester::File::VERSION = '0.002';
+  $TPath::Forester::File::VERSION = '0.003';
 }
 
 # ABSTRACT: L<TPath::Forester> that understands file systems
@@ -136,7 +136,7 @@ TPath::Forester::File - L<TPath::Forester> that understands file systems
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 ATTRIBUTES
 
@@ -168,11 +168,15 @@ A file's "tag" is its name.
 =head2 clean
 
 C<clean> purges all cached information about the
-file system. Because nodes only know their parents through weak references. If
+file system. Because nodes only know their parents through weak references, if
 you clean the cache, all ancestor nodes which are not themselves descendants of
 some other node whose reference is still retained will be garbage collected.
 
-TODO: explain the necessity of this method.
+This method is useful because to reduce file system thrash file meta-data is cached
+aggressively. To facilitate wrapping, this caching is done in the forester itself
+rather than the index. But this means that as the file system changes its cached
+representation can grow out of sync. So if you know or fear files have changed,
+you will want to clean the forester.
 
 =head1 FUNCTIONS
 
